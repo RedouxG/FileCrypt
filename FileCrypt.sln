@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32802.440
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TextDataCrypt", "TextDataCrypt.vcxproj", "{C9B47422-6D0C-4FC5-9247-7DA51DD05CF5}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileCrypt", "FileCrypt.vcxproj", "{C9B47422-6D0C-4FC5-9247-7DA51DD05CF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

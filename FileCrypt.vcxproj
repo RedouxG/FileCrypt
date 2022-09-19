@@ -24,6 +24,7 @@
     <ProjectGuid>{c9b47422-6d0c-4fc5-9247-7da51dd05cf5}</ProjectGuid>
     <RootNamespace>TextDataCrypt</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>FileCrypt</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

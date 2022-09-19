@@ -93,7 +93,8 @@ namespace TDConsole {
 
         // Decrypt and crypt give the same result, using AES CTR mode
         cmdFunctions["crypt"] = crypt_file; cmdFunctions["c"] = crypt_file;        
-        cmdFunctions["dcrypt"] = decrypt_file; cmdFunctions["dc"] = decrypt_file;
+        cmdFunctions["decrypt"] = decrypt_file; cmdFunctions["dc"] = decrypt_file;
+        cmdFunctions["decryptprint"] = decrypt_file_print; cmdFunctions["dcp"] = decrypt_file_print;
 
         // Debug
         cmdFunctions["test"] = test;
@@ -124,15 +125,20 @@ namespace TDConsole {
     void show_help(std::vector<std::string> arg)
     {
         printn("----------------------------------");
-        printn("    Crypting files:");
+        printn("    Crypting file:");
         printn("    [command] = crypt, [arg1] = inFile, [arg2] = outFile, [arg3] = option");
         printn("    Example use: 'crypt file.txt cryptedFile.bin'");
         printn("    Desc.: Crypting desired file using AES256/CTR, output file is saved as binary data.");
         print("\n");
-        printn("    Derypting files:");
+        printn("    Derypting file:");
         printn("    [command] = decrypt, [arg1] = inFile, [arg2] = outFile, [arg3] = option");
         printn("    Example use: 'decrypt cryptedFile.bin decryptedFile.txt'");
         printn("    Desc.: Decrypting binary file encrypted using AES256/CTR, output file is saved as txt file.");
+        print("\n");
+        printn("    Derypting file and printing content:");
+        printn("    [command] = decryptprint, [arg1] = inFile");
+        printn("    Example use: 'decryptprint cryptedFile.bin'");
+        printn("    Desc.: Decrypting binary file encrypted using AES256/CTR, output is printed to the console.");
         print("\n");
         printn("    Option list:");
         printn("    -chk -> checks the key security.");
@@ -150,19 +156,19 @@ namespace TDConsole {
         std::string inFile = results.inFile;
         std::string outFile = results.outFile;
 
-        // getting the key
+        // Getting the key
         std::string rawKey = get_user_input_hidden("Type key: ");
         if (rawKey.size()>32) { print_err_msg("Key size is too large, maximum size is 32."); return; }
         std::vector<TDBYTE> rawKeyV = TDCrypt::pad_key(rawKey);
 
-        // key check (optional)
+        // Key check (optional)
         if (arg.size() > 2) { if (arg[2] == "-chk") check_key(rawKey); }
 
-        // extracting text from file in bytes
+        // Extracting text from file in bytes
         std::vector<TDBYTE> rawTextV = TDFile::read_from_bin_file(inFile);
 
-        // saving crypted data to target path
-        std::vector<TDBYTE> resultV = TDCrypt::crypt(rawTextV, rawKeyV); // FIX_THIS
+        // Saving crypted data to target path
+        std::vector<TDBYTE> resultV = TDCrypt::crypt(rawTextV, rawKeyV);
         if(!TDFile::save_bin_file(resultV, outFile,  false)) { print_err_msg("Couldn't write data to path: ",outFile); return; }
         printn("File saved successfully to: " + outFile);
     }
@@ -172,6 +178,30 @@ namespace TDConsole {
     {
         // As in aes.h source: "CTR encryption is its own inverse function"
         crypt_file(arg);
+    }
+
+
+    void decrypt_file_print(std::vector<std::string> arg)
+    {
+        arg.push_back(" "); // Dummy output file to not throw errors
+        InOutFiles results = process_arg_paths(arg, 0, 1);
+        std::string inFile = results.inFile;
+        
+        // Getting the key
+        std::string rawKey = get_user_input_hidden("Type key: ");
+        if (rawKey.size() > 32) { print_err_msg("Key size is too large, maximum size is 32."); return; }
+        std::vector<TDBYTE> rawKeyV = TDCrypt::pad_key(rawKey);
+
+        // Extracting text from file in bytes
+        std::vector<TDBYTE> rawTextV = TDFile::read_from_bin_file(inFile);
+
+        // Printing data
+        std::vector<TDBYTE> resultV = TDCrypt::decrypt(rawTextV, rawKeyV);
+        printn("\nDecrypted file content: ");
+        printn(BasicHelp::convert_UCharVector_to_string(resultV));
+        
+        get_user_input("\nClick ENTER when finished (clears console output).");
+        system("cls");
     }
 
 

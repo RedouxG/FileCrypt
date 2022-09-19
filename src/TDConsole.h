@@ -48,6 +48,8 @@ namespace TDConsole{
 
     void decrypt_file(std::vector<std::string> arg);
 
+    void decrypt_file_print(std::vector<std::string> arg);
+
     void test(std::vector<std::string> arg);
 };
 
