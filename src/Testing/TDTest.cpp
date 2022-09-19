@@ -1,13 +1,13 @@
 #include "TDTest.h"
 
 namespace TDTest {
-    void print_test_error(std::string message, int val1, int val2)
+    void print_test_error(const std::string message, const int val1, const int val2)
     {
         printn(message << val1 << " (" << static_cast<char>(val1) << ") " << "!= " << val2 << " (" << static_cast<char>(val2) << ")");
     }
     
 
-    int crypt_test(std::vector<TDBYTE> textV, std::vector<TDBYTE> keyV)
+    int crypt_test(const std::vector<TDBYTE> textV, const std::vector<TDBYTE> keyV)
     {
         // Test for crypting itself
         std::vector<TDBYTE> crypted = TDCrypt::crypt(textV, keyV);
@@ -19,7 +19,7 @@ namespace TDTest {
     }
 
 
-    int file_crypt_test(std::vector<TDBYTE> textV, std::vector<TDBYTE> keyV)
+    int file_crypt_test(const std::vector<TDBYTE> textV, const std::vector<TDBYTE> keyV)
     {
         std::string testTxt = "test.txt";
         std::string outputCrypted = "cryptedTest";

@@ -1,10 +1,12 @@
 #include "TDConsole.h"
 
 namespace TDConsole {
+    /* VARIABLES */
     std::unordered_map<std::string, ConsoleFunction> cmdFunctions;
 
     
-    std::string get_user_text(std::string message)
+    /* USER INPUT */
+    std::string get_user_text(const std::string message)
     {
         std::string input = "";
         printn(message);
@@ -21,7 +23,7 @@ namespace TDConsole {
     }
 
 
-    std::string get_user_input_hidden(std::string message)
+    std::string get_user_input_hidden(const std::string message)
     {
         std::string input;
         print(message);
@@ -40,7 +42,7 @@ namespace TDConsole {
     }
 
 
-    std::string get_user_input(std::string message)
+    std::string get_user_input(const std::string message)
     {
         std::string input;
 
@@ -50,7 +52,8 @@ namespace TDConsole {
     }
 
 
-    InOutFiles process_arg_paths(std::vector<std::string> arg, sizeInt inArgIndex, sizeInt outArgIndex) // Function checks if input/output paths to files exist
+    /* MISC */
+    InOutFiles process_arg_paths(const std::vector<std::string> arg, const sizeInt inArgIndex, const sizeInt outArgIndex) // Function checks if input/output paths to files exist
     {
         // Check if in/out files were input
         if (!(arg.size() > inArgIndex)) { print_err_msg("Please specify path to input file."); exit(0); }
@@ -101,7 +104,7 @@ namespace TDConsole {
     }
 
 
-    void check_key(std::string rawKey)
+    void check_key(const std::string rawKey)
     {
         sizeInt count = TDPassChecker::dict_attack_check(rawKey);
         if (count > 0)
@@ -112,7 +115,8 @@ namespace TDConsole {
     }
 
 
-    void print_err_msg(std::string message, std::string input)
+    /* PRINTING ERROR */
+    void print_err_msg(const std::string message, const std::string input)
     {
         if (message != "" && input != "") { print(message); printn(input); print("\n"); return; }
 
@@ -122,6 +126,7 @@ namespace TDConsole {
     }
     
 
+    /* COMMAND FUNCTIONS */
     void show_help(std::vector<std::string> arg)
     {
         printn("----------------------------------");
@@ -212,6 +217,7 @@ namespace TDConsole {
     }
 
 
+    /* INIT FUNCTION */
     void start(int argc, char* argv[])
     {
         // check for command

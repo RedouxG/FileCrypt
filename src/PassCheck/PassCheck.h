@@ -19,7 +19,7 @@ namespace TDPassChecker {
 	void init_collision_check(std::string targetFile = "10000.txt");
 
 	/* USER FUNCTIONS */
-	sizeInt dict_attack_check(std::string UserPass, std::string targetFile = "100000.txt");
+	sizeInt dict_attack_check(const std::string UserPass, std::string targetFile = "100000.txt");
 };
 
 #endif

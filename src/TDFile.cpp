@@ -1,10 +1,11 @@
 # include "TDFile.h"
 
 namespace TDFile {
+    /* VARIABLES */
     extern std::string saveDirName = "Data";
     extern std::string saveDirPath = "";
 
-
+    /* PATH */
     bool create_data_dir()
     {
         // Run this first whenever operating on files, stores all data by default
@@ -26,7 +27,8 @@ namespace TDFile {
     }
 
 
-    long long get_file_byte_size(std::string filepath)
+    /* UTILITY */
+    long long get_file_byte_size(const std::string filepath)
     {
         std::ifstream file(filepath, std::ios::binary);
         if (!file) { return 0; }
@@ -39,7 +41,8 @@ namespace TDFile {
     }
 
 
-    bool save_bin_file(std::vector<TDBYTE> v, std::string filePath, bool append)
+    /* SAVE AND READ */
+    bool save_bin_file(const std::vector<TDBYTE> v, const std::string filePath, bool append)
     {
         auto fileMode = std::ios::app|std::ios::binary;
         if (!append) { fileMode = std::ios::binary; }
@@ -58,7 +61,7 @@ namespace TDFile {
     }
 
 
-    std::vector<TDBYTE> read_from_bin_file(std::string filePath)
+    std::vector<TDBYTE> read_from_bin_file(const std::string filePath)
     {
         std::vector<TDBYTE> content;
         long long fileSize = get_file_byte_size(filePath);

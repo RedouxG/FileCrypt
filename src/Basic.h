@@ -1,5 +1,6 @@
 /*
-	Header included to every file, consists of all global includes and definitions
+	Header included to every file, consists of all global includes and definitions.
+	Namespace below is a small library of functions.
 */
 #pragma once
 
@@ -27,29 +28,26 @@
 #define sizeInt     std::size_t
 #define TDBYTE      unsigned char
 
-/*
-	Namespace below is a small library of functions
-*/
 namespace BasicHelp{
-	// std::vector<TDBYTE> and string operations
-	std::string convert_UCharVector_to_string(std::vector<TDBYTE> Utext);
+	/* TDBYTE VECTOR TO STRING CONVERT */
+	std::string convert_UCharVector_to_string(const std::vector<TDBYTE> Utext);
 
-	std::vector<TDBYTE> convert_string_to_UCharVector(std::string str);
+	std::vector<TDBYTE> convert_string_to_UCharVector(const std::string str);
 
-	// String operations
+	/* STRING OPERATIONS */
 	std::string str_to_lower(std::string str);
 
-	// Print operations
-	void printVector(std::vector<TDBYTE> v);
+	/* PRINT OPERATIONS */
+	void printVector(const std::vector<TDBYTE> v);
 
-	// System operations
-	bool dir_exist(std::string path);
+	/* SYSTEM OPERATIONS */
+	bool dir_exist(const std::string path);
 
-	bool file_exist(std::string path);
+	bool file_exist(const std::string path);
 
 	std::string get_file_folder_path(std::string path);
 
-	void create_empty_file(std::string path);
+	void create_empty_file(const std::string path);
 };
 
 #endif

@@ -1,7 +1,8 @@
 #include "TDCrypt.h"
 
 namespace TDCrypt {
-    std::vector<TDBYTE> pad_key(std::string rawKey)
+    /* PADDING */
+    std::vector<TDBYTE> pad_key(const std::string rawKey)
     {
         // Function padds eventual unused space in key 
         std::vector<TDBYTE> key(KEY_LEN);
@@ -10,7 +11,8 @@ namespace TDCrypt {
     }
     
 
-    std::vector<TDBYTE> hash_sha256(const std::vector<TDBYTE> inputDataV)
+    /* HASHING AND STRETCHING KEY */
+    std::vector<TDBYTE> hash_sha256(std::vector<TDBYTE> inputDataV)
     {
         assert(inputDataV.size() == 32); // Might change that to more updates of sha but only 32 byte hash is needed
 
@@ -36,6 +38,7 @@ namespace TDCrypt {
     }
 
 
+    /* AES CTR CRYPTING */
     std::vector<TDBYTE> aesCTR_encrypt(const std::vector<TDBYTE> plainText,
         const std::vector<TDBYTE> key, const std::vector<TDBYTE> vi)
     {
@@ -63,6 +66,7 @@ namespace TDCrypt {
     }
 
 
+    /* CALL CRYPTING */
     std::vector<TDBYTE> crypt(const std::vector<TDBYTE> plainTextV, const std::vector<TDBYTE> keyV)
     {
         /* Functions expects padded key */
@@ -77,8 +81,7 @@ namespace TDCrypt {
         return aesCTR_encrypt(plainTextV, hashedKeyV, viV);
     }
 
-
-
+    
     std::vector<TDBYTE> decrypt(const std::vector<TDBYTE> cryptedTextV, const std::vector<TDBYTE> keyV)
     {
         // As in aes.h source: "CTR encryption is its own inverse function"

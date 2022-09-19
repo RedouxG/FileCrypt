@@ -10,11 +10,11 @@
 #include "../TDFile.h"
 
 namespace TDTest {
-	void print_test_error(std::string message, int val1, int val2);
+	void print_test_error(const std::string message, const int val1, const int val2);
 
-    int crypt_test(std::vector<TDBYTE> textV, std::vector<TDBYTE> keyV);
+    int crypt_test(const std::vector<TDBYTE> textV, const std::vector<TDBYTE> keyV);
 
-    int file_crypt_test(std::vector<TDBYTE> textV, std::vector<TDBYTE> keyV);
+    int file_crypt_test(const std::vector<TDBYTE> textV, const std::vector<TDBYTE> keyV);
 
     void start_test();
 
