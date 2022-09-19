@@ -1,3 +1,6 @@
+/*
+	Debug class + key check 
+*/
 #pragma once
 
 #ifndef TDPASS_CHECK
@@ -13,7 +16,7 @@ namespace TDPassChecker {
 
 	std::vector<TDBYTE> collision_check_commoncred(const std::string filePath, const bool printing = false);
 
-	void init_collision_check(std::string targetFile = "100000.txt");
+	void init_collision_check(std::string targetFile = "10000.txt");
 
 	/* USER FUNCTIONS */
 	sizeInt dict_attack_check(std::string UserPass, std::string targetFile = "100000.txt");

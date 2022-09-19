@@ -47,20 +47,22 @@ namespace TDPassChecker {
         }
 
         file.close();
-        printn("Total collisions in sha256 stretched: " << collisionsCount);
-        printn("coll percentage: " << (static_cast<float>(collisionsCount) / static_cast<float>(count)) * 100);
+        printn("\nTotal collisions in sha256 stretched: " << collisionsCount);
+        printn("Collision percentage: " << (static_cast<float>(collisionsCount) / static_cast<float>(count)) * 100);
         return content;
     }
 
 
     void init_collision_check(std::string targetFile)
     {
+        printn("\nChecking for collisions...");
         std::string credentialPath = TDFile::get_exe_folder_path() + "Data/Common-Credentials/";
         credentialPath += targetFile; // Can be whichever file from credentials
 
         if (BasicHelp::file_exist(credentialPath)) { collision_check_commoncred(credentialPath, true); }
         else { printn("Error, couldn't find path to file with common credentials: "+credentialPath); }
     }
+
 
     /* USER FUNCTIONS */
     sizeInt dict_attack_check(std::string UserPass, std::string targetFile)

@@ -27,7 +27,9 @@
 #define sizeInt     std::size_t
 #define TDBYTE      unsigned char
 
-
+/*
+	Namespace below is a small library of functions
+*/
 namespace BasicHelp{
 	// std::vector<TDBYTE> and string operations
 	std::string convert_UCharVector_to_string(std::vector<TDBYTE> Utext);

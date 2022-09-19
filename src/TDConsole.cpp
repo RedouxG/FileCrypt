@@ -178,6 +178,7 @@ namespace TDConsole {
     void test(std::vector<std::string> arg)
     {
         TDTest::start_test();
+        TDPassChecker::init_collision_check();
     }
 
 
