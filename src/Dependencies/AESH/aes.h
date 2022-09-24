@@ -12,7 +12,7 @@
 /*************************** HEADER FILES ***************************/
 #include <stddef.h>
 
-namespace TDAes{
+namespace FCAes{
     /****************************** MACROS ******************************/
     #define AES_BLOCK_SIZE 16               // AES operates on 16 bytes at a time
 

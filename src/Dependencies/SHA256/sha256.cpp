@@ -17,7 +17,7 @@
 #include <memory.h>
 #include "sha256.h"
 
-namespace TDSha256 {
+namespace FCSha256 {
 	/****************************** MACROS ******************************/
 	#define ROTLEFT(a,b) (((a) << (b)) | ((a) >> (32-(b))))
 	#define ROTRIGHT(a,b) (((a) >> (b)) | ((a) << (32-(b))))

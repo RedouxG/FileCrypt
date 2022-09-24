@@ -22,7 +22,7 @@
 
 #include <stdio.h>
 
-namespace TDAes {
+namespace FCAes {
 	/****************************** MACROS ******************************/
 	// The least significant byte of the word is rotated to the end.
 	#define KE_ROTWORD(x) (((x) << 8) | ((x) >> 24))

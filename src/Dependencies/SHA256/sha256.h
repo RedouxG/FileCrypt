@@ -13,7 +13,7 @@
 #include <stddef.h>
 
 /****************************** MACROS ******************************/
-namespace TDSha256 {
+namespace FCSha256 {
 	#define SHA256_BLOCK_SIZE 32            // SHA256 outputs a 32 byte digest
 
 	/**************************** DATA TYPES ****************************/

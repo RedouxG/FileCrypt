@@ -18,19 +18,19 @@
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\TDConsole.cpp">
+    <ClCompile Include="src\Console\FCConsole.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\TDFile.cpp">
+    <ClCompile Include="src\Files\FCFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\TDCrypt.cpp">
+    <ClCompile Include="src\Crypt\FCCrypt.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Basic.cpp">
+    <ClCompile Include="src\BasicHelp\BasicHelp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Testing\TDTest.cpp">
+    <ClCompile Include="src\Testing\FCTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Dependencies\SHA256\sha256.cpp">
@@ -39,24 +39,27 @@
     <ClCompile Include="src\Dependencies\AESH\aes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\PassCheck\PassCheck.cpp">
+    <ClCompile Include="src\PassCheck\FCPassCheck.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FCMaster.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Basic.h">
+    <ClInclude Include="src\BasicHelp\BasicHelp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\TDConsole.h">
+    <ClInclude Include="src\Console\FCConsole.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\TDCrypt.h">
+    <ClInclude Include="src\Crypt\FCCrypt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\TDFile.h">
+    <ClInclude Include="src\Files\FCFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Testing\TDTest.h">
+    <ClInclude Include="src\Testing\FCTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Dependencies\SHA256\sha256.h">
@@ -65,7 +68,10 @@
     <ClInclude Include="src\Dependencies\AESH\aes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\PassCheck\PassCheck.h">
+    <ClInclude Include="src\PassCheck\FCPassCheck.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FCMaster.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

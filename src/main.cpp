@@ -1,9 +1,9 @@
-#include "TDConsole.h"
-
+#include "FCMaster.h"
 
 int main(int argc, char* argv[])
 {
-	TDConsole::start(argc, argv);
-	
+	FCConsole::start(argc, argv);
+
+	//FCTest::start_test();
     return 0;
 }
