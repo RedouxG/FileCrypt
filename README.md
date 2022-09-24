@@ -7,6 +7,8 @@ Simple implementation of AES-CTR crypting using 256 bit hashed key. Hasihing is 
 
 Program takes an input file and crypts it using a key and outputs a crypted file. Decrypting works the same way.
 
+Encryption is done in 1MB blocks, IV is prepended in the clear for each block.
+
 Building
 --------
 1) Compile using Visual Studio with classic c++ development tools or use any other compiler.
