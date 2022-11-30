@@ -11,13 +11,18 @@ Encryption is done in 1MB blocks, IV is prepended in the clear for each block.
 
 Building
 --------
-1) Compile using Visual Studio with classic c++ development tools or use any other compiler.
+No additional libraries are needed, project is fully self contained.
 
+**Windows compilation:**
+1) Compile using .bat files provided:
+    - `winBuildCMake.bat` builds the project using CMake and g++
+    - `winBuild.bat` builds the project using g++
 2) Move ```Dependencies/common-credentials``` folder into the build folder: ```(your build folder)/Data/common-credentials```
 
 Second step can be skipped if key security check functionality is not desired.
 
-No additional libraries are needed, project is fully self contained.
+**Linux compilation:**
+1) Work in progress (changes to dir system in the project have to be made to be compatible with unix)
 
 Example Use
 -----------
