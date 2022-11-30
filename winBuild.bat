@@ -13,6 +13,7 @@ set destination="build/winOut.exe"
 REM ----------------------------------------
 REM BUILD
 REM ----------------------------------------
+if not exist "build" mkdir "build"
 @echo on
 
 g++ -W -o %destination% %SRC%
