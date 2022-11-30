@@ -14,6 +14,8 @@ REM ----------------------------------------
 REM BUILD
 REM ----------------------------------------
 if not exist "build" mkdir "build"
+if not exist "build/Data/Common-Credentials" xcopy "src\Dependencies\Common-Credentials" "build/Data/Common-Credentials" /E
+
 @echo on
 
 g++ -W -o %destination% %SRC%

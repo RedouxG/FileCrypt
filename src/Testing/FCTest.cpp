@@ -66,6 +66,9 @@ namespace FCTest {
         // Create file of a given size (larger than one block/1MB)
         std::string testTxt = "test.txt";
 
+        printn("\n----------------------------------");
+        printn("STARTING UNIT TESTS FOR FILECRYPT\n");
+
         printn("Creating test file...");
         for (sizeInt i = 0; i < 10000; i++) // 5,46MB file
         {
@@ -81,8 +84,13 @@ namespace FCTest {
         int fcmerr = fcmaster_test(rawKey, testTxt);
         printn("Errors in fcmaster_test: " << fcmerr << "\n");
         allerr += fcmerr;
+
+        allerr += FCPassChecker::init_collision_check();
         
         printn("Errors in test: " << allerr);
+        if (allerr == 0) { printn("RESULT OK"); }
+        else { printn("RESULT FOUND ERRORS"); }
+        printn("----------------------------------\n");
 
         // Cleanup
         remove(testTxt.c_str());

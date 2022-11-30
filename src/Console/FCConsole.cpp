@@ -211,7 +211,6 @@ namespace FCConsole {
     void test(std::vector<std::string> arg)
     {
         FCTest::start_test();
-        FCPassChecker::init_collision_check();
     }
 
 
