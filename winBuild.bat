@@ -7,7 +7,7 @@ REM ----------------------------------------
 REM VARIABLES
 REM ----------------------------------------
 
-for /f "delims=" %%a in ('dir /s/b "*.cpp"') do call set "SRC=%%SRC%% %%a"
+for /f "delims=" %%a in ('dir /s/b "*.cpp"') do call set "SRC=%%SRC%%%%a "
 set destination="build/winOut.exe"
 
 REM ----------------------------------------
