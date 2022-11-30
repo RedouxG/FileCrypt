@@ -34,6 +34,7 @@
 #define sizeInt     std::size_t
 #define FCBYTE      unsigned char
 
+
 namespace BasicHelp{
 	/* FCBYTE VECTOR TO STRING CONVERT */
 	std::string convert_UCharVector_to_string(const std::vector<FCBYTE> Utext);

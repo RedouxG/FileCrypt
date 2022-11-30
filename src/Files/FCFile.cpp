@@ -2,8 +2,8 @@
 
 namespace FCFile {
     /* VARIABLES */
-    extern std::string saveDirName = "Data";
-    extern std::string saveDirPath = "";
+    std::string saveDirName = "Data";
+    std::string saveDirPath = "";
 
     /* PATH */
     bool create_data_dir()

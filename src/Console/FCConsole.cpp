@@ -61,14 +61,11 @@ namespace FCConsole {
 
         if (!(arg.size() > outArgIndex)) { print_err_msg("Please specify path to output file."); exit(0); }
         std::string outFile = arg[outArgIndex];
-
-        // Create folder and assign paths
-        FCFile::create_data_dir();
         
         // Check if outFile directory exists
         std::string outDir = BasicHelp::get_file_folder_path(outFile);
         if (outDir == "") { outFile = FCFile::saveDirPath + outFile; } // save to default dir folder if exact path not specified
-        else if (!BasicHelp::dir_exist(outDir)) { print_err_msg("Folder doesnt exist: " + outDir); exit(0); }
+        else if (!BasicHelp::dir_exist(outDir)) { print_err_msg("Folder doesn't exist: " + outDir); exit(0); }
 
         // if inFile is just file name, search in default save dir
         std::string inDir = BasicHelp::get_file_folder_path(outFile);
@@ -213,7 +210,7 @@ namespace FCConsole {
 
     void test(std::vector<std::string> arg)
     {
-        //FCTest::start_test();
+        FCTest::start_test();
         FCPassChecker::init_collision_check();
     }
 
@@ -234,7 +231,7 @@ namespace FCConsole {
         }
 
         // initialize paths
-        //FCFile::create_data_dir();  // FIXTH
+        FCFile::create_data_dir();
          
         // initialize commands
         register_command_functions(); 

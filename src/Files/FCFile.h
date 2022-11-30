@@ -23,9 +23,9 @@ namespace FCFile{
         const sizeInt viBytes = 16;                            // 16 Bytes
         const sizeInt blockSize = dataBytes + viBytes;          // 1048576 Bytes
 
-        const int readMode = std::ios::binary;
-        const int writeMode = std::ios::binary;
-        const int writeAppendMode = std::ios::app | std::ios::binary;
+        const std::ios::openmode readMode = std::ios::binary;
+        const std::ios::openmode writeMode = std::ios::binary;
+        const std::ios::openmode writeAppendMode = std::ios::app | std::ios::binary;
 
         std::vector<FCBYTE> data;
         std::vector<FCBYTE> vi;
