@@ -14,7 +14,7 @@ REM ----------------------------------------
 REM BUILD
 REM ----------------------------------------
 if not exist "build" mkdir "build"
-if not exist "build/Data/Common-Credentials" xcopy "src\Dependencies\Common-Credentials" "build/Data/Common-Credentials" /E
+if not exist "build/Data/Common-Credentials" xcopy "src/Dependencies/Common-Credentials" "build/Data/Common-Credentials" /E /y /q /i
 
 @echo on
 

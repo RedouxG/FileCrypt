@@ -5,3 +5,4 @@ REM ----------------------------------------
 @echo on
 
 cmake -G "MinGW Makefiles" -B./build/CMake -S.
+make -C ./build/CMake
