@@ -6,17 +6,29 @@
 #ifndef FCTEST
 #define FCTEST
 
+// --------------------------------------------
+// DEPENDENCIES
+// --------------------------------------------
+
 #include "../FCMaster.h"
 
 
-
 namespace FCTest {
-	void print_test_error(const std::string message, const int val1, const int val2);
+
+    // --------------------------------------------
+    // FUNCTIONS
+    // --------------------------------------------
+
+    // Outputs to console a give error message
+    void print_test_error(const std::string message, const int val1, const int val2);
     
+    // Tests crypting process
     int crypt_test(const std::vector<FCBYTE> textV, const std::vector<FCBYTE> keyV, const std::vector<FCBYTE> vi);
 
+    // Tests FCMaster to check if crypting to files is correct
     int fcmaster_test(const std::string rawKey, const std::string testTxt);
     
+    // Starts the test
     void start_test();
 
     template<typename T>

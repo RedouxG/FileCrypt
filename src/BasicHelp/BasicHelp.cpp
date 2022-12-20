@@ -1,7 +1,6 @@
 #include "BasicHelp.h"
 
 namespace BasicHelp {
-    /* FCBYTE VECTOR TO STRING CONVERT */
     std::string convert_UCharVector_to_string(const std::vector<FCBYTE> Utext)
     {
         std::string output;
@@ -25,7 +24,6 @@ namespace BasicHelp {
     }
 
 
-    /* STRING OPERATIONS */
     std::string str_to_lower(std::string str)
     {
         for (sizeInt i = 0; i < str.length(); i++) { str[i] = tolower(str[i]); }
@@ -33,7 +31,6 @@ namespace BasicHelp {
     }
 
 
-    /* PRINT OPERATIONS */
     void printVector(const std::vector<FCBYTE> v)
     {
         for (sizeInt i = 0; i < v.size(); i++) { print((int)v[i] << " "); }
@@ -41,7 +38,6 @@ namespace BasicHelp {
     }
 
 
-    /* SYSTEM OPERATIONS */
     bool dir_exist(const std::string path)
     {
         struct stat info;
@@ -58,7 +54,7 @@ namespace BasicHelp {
     {
         if (dir_exist(path)) { return path; } // If path is a folder just return it
 
-        // Loop basically count how much to cut from path to get the folder
+        // Count how much to cut from path to get the folder
         int count = 0;
         for (sizeInt i = 0; i < path.size(); i++)
         {

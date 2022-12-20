@@ -18,6 +18,6 @@ if not exist "build/Data/Common-Credentials" xcopy "src/Dependencies/Common-Cred
 
 @echo on
 
-g++ -W -o %destination% %SRC%
+g++ -W -Wextra -g3 -o %destination% %SRC%
 
 

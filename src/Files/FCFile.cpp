@@ -85,7 +85,7 @@ namespace FCFile {
         return block;
     }
 
-    /* Reads given size of data on a given index from crypted file */
+
     FileBlock read_block_crypted(const std::string filePath, const sizeInt blockCount)
     {
         /*

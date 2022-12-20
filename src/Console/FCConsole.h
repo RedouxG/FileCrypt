@@ -1,13 +1,21 @@
 /*
     Console operations - user console interface
 */
+
 #pragma once
 
 #ifndef FCCONSOLE
 #define FCCONSOLE
 
+// --------------------------------------------
+// DEPENDENCIES
+// --------------------------------------------
+
 #include "../FCMaster.h"
 
+// --------------------------------------------
+// FUNCTIONS
+// --------------------------------------------
 
 namespace FCConsole{
     /* VARIABLES */
@@ -38,6 +46,8 @@ namespace FCConsole{
     void print_err_msg(std::string message = "", std::string input = "");
 
     /* COMMAND FUNCTIONS */
+    sizeInt dict_attack_check(std::string UserPass);
+
     void show_help(std::vector<std::string> arg);
 
     void crypt_file(std::vector<std::string> arg);

@@ -1,11 +1,16 @@
 #include "FCConsole.h"
 
 namespace FCConsole {
-    /* VARIABLES */
+    // --------------------------------------------
+    // VARIABLES
+    // --------------------------------------------
+
     std::unordered_map<std::string, ConsoleFunction> cmdFunctions;
 
-    
-    /* USER INPUT */
+    // --------------------------------------------
+    // FUNCTIONS
+    // --------------------------------------------
+
     std::string get_user_text(const std::string message)
     {
         std::string input = "";
@@ -15,7 +20,7 @@ namespace FCConsole {
         while (std::getline(std::cin, line))
         {
             if (line.empty()) { break; }
-            input+=line+"\n";
+            input += line + "\n";
         }
 
         input.pop_back(); // delete last enter
@@ -45,14 +50,11 @@ namespace FCConsole {
     std::string get_user_input(const std::string message)
     {
         std::string input;
-
         print(message); std::getline(std::cin, input);
-
         return input;
     }
 
 
-    /* MISC */
     InOutFiles process_arg_paths(const std::vector<std::string> arg, const sizeInt inArgIndex, const sizeInt outArgIndex) // Function checks if input/output paths to files exist
     {
         // Check if in/out files were input
@@ -106,7 +108,7 @@ namespace FCConsole {
 
     void check_key(const std::string rawKey)
     {
-        sizeInt count = FCPassChecker::dict_attack_check(rawKey);
+        sizeInt count = dict_attack_check(rawKey);
         if (count > 0)
         {
             std::string choice = get_user_input("Do you want to continue (y/n): ");
@@ -115,7 +117,6 @@ namespace FCConsole {
     }
 
 
-    /* PRINTING ERROR */
     void print_err_msg(const std::string message, const std::string input)
     {
         if (message != "" && input != "") { print(message); printn(input); print("\n"); return; }
@@ -126,7 +127,6 @@ namespace FCConsole {
     }
     
 
-    /* COMMAND FUNCTIONS */
     void show_help(std::vector<std::string> arg)
     {
         printn("----------------------------------");
@@ -155,6 +155,33 @@ namespace FCConsole {
     }
 
 
+    sizeInt dict_attack_check(std::string UserPass)
+    {
+        /*  Note:
+            This is very simple for now, it doesn't rally check for dict attacks
+            It simply checks if your password is on the list of top n passwords
+        */
+
+        std::string credentialPath = FCFile::get_exe_folder_path() + "Data/Common-Credentials/";
+        credentialPath += "1000000.txt"; // Can be whichever file from credentials
+
+        std::ifstream file(credentialPath);
+        if (!file) { printn("Error, couldn't find path to file with common credentials: " + credentialPath); return 0; }
+        sizeInt count = 0;
+        sizeInt place = 0;
+        for (std::string topPass; std::getline(file, topPass); )
+        {
+            if (UserPass.find(topPass) != std::string::npos) {
+                printn("Your password contains common phrase: " + topPass + ", place: "<<place);
+                count++;
+            } place++;
+        }
+
+        printn("Your password contains " << count << " common password parts.");
+        return count;
+    }
+
+
     void crypt_file(std::vector<std::string> arg) // arg[0] inFile, arg[1] outFile arg[2]
     {
         InOutFiles results = process_arg_paths(arg, 0, 1);
@@ -169,7 +196,7 @@ namespace FCConsole {
         if (arg.size() > 2) { if (arg[2] == "-chk") check_key(rawKey); }
 
         // Crypting
-        FCMaster::CryptToFile(inFile,outFile,rawKey);
+        FCMaster::crypt_to_file(inFile,outFile,rawKey);
         printn("File saved successfully to: " + outFile);
     }
 
@@ -185,7 +212,7 @@ namespace FCConsole {
         if (rawKey.size() > 32) { print_err_msg("Key size is too large, maximum size is 32."); return; }
 
         // Decrypting
-        FCMaster::DecryptToFile(inFile, outFile, rawKey);
+        FCMaster::decrypt_to_file(inFile, outFile, rawKey);
         printn("File saved successfully to: " + outFile);
     }
 
@@ -201,7 +228,7 @@ namespace FCConsole {
         if (rawKey.size() > 32) { print_err_msg("Key size is too large, maximum size is 32."); return; }
         std::vector<FCBYTE> rawKeyV = FCCrypt::pad_key(rawKey);
 
-        FCMaster::DecryptToFile(inFile, "", rawKey, false); // Dont save, only print
+        FCMaster::decrypt_to_file(inFile, "", rawKey, false); // Dont save, only print
         
         get_user_input("\nClick ENTER when finished (clears console output).");
         system("cls");
@@ -214,29 +241,23 @@ namespace FCConsole {
     }
 
 
-    /* INIT FUNCTION */
     void start(int argc, char* argv[])
     {
-        // check for command
         if (argc < 2) { print_err_msg(); return; }
         std::string command = static_cast<std::string>(argv[1]);
         command = BasicHelp::str_to_lower(command);
 
-        // populate arguments
         std::vector<std::string> arg;
         if (!(argc < 3))
         {
             for (int i = 2; i < argc; i++) { arg.push_back(static_cast<std::string>(argv[i])); }
         }
 
-        // initialize paths
-        FCFile::create_data_dir();
-         
-        // initialize commands
-        register_command_functions(); 
+        FCFile::create_data_dir();     // initialize paths
+        register_command_functions();  // initialize commands
 
         // check if command exists
-        if (cmdFunctions.count(command) == 0) 
+        if (cmdFunctions.count(command) == 0)
         { print_err_msg("Command does not exist: ", command); print("\n"); return; }
         // call function and pass arguments
         cmdFunctions[command](arg);

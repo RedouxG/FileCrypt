@@ -1,5 +1,6 @@
 #include "FCTest.h"
 
+
 namespace FCTest {
     void print_test_error(const std::string message, const int val1, const int val2)
     {
@@ -9,12 +10,9 @@ namespace FCTest {
 
     int crypt_test(const std::vector<FCBYTE> textV, const std::vector<FCBYTE> keyV, const std::vector<FCBYTE> vi)
     {
-        // Test for crypting itself
         std::vector<FCBYTE> crypted = FCCrypt::crypt(textV, keyV, vi);
         std::vector<FCBYTE> decrypted = FCCrypt::decrypt(crypted, keyV, vi);
-
         int errors = test_vars("crypt_test", "(text/decrypted)", textV, decrypted);
-
         return errors;
     }
 
@@ -33,8 +31,8 @@ namespace FCTest {
         testFile.read((char*)(&testText[0]), testSize);
         testFile.close();
         
-        FCMaster::CryptToFile(testTxt, outputCrypted, rawKey);
-        FCMaster::DecryptToFile(outputCrypted, outputDecrypted, rawKey);
+        FCMaster::crypt_to_file(testTxt, outputCrypted, rawKey);
+        FCMaster::decrypt_to_file(outputCrypted, outputDecrypted, rawKey);
         
         // Get decrypted file data
         sizeInt decryptedSize = FCFile::get_file_byte_size(outputDecrypted);
@@ -51,7 +49,8 @@ namespace FCTest {
 
         return errors;
     }
-    
+
+
     void start_test()
     {
         std::string rawText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n Ut porttitor mi eget ipsum dictum blandit.\n Cras at elit ipsum. Pellentesque ac sem nec diam sodales bibendum et a nisl. In feugiat molestie leo in rhoncus.\n Vivamus accumsan at nisl ultricies laoreet. Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n Donec vestibulum turpis nec sem dapibus efficitur.\n Morbi commodo tristique elit a tempor.\n Nam lectus purus, eleifend sit amet lectus ac, congue convallis eros.";
@@ -84,8 +83,6 @@ namespace FCTest {
         int fcmerr = fcmaster_test(rawKey, testTxt);
         printn("Errors in fcmaster_test: " << fcmerr << "\n");
         allerr += fcmerr;
-
-        allerr += FCPassChecker::init_collision_check();
         
         printn("Errors in test: " << allerr);
         if (allerr == 0) { printn("RESULT OK"); }
